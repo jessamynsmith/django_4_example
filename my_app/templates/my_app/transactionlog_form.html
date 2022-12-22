@@ -1,0 +1,14 @@
+<html lang="en">
+<head>
+    <title>Transaction Logs</title>
+</head>
+<body>
+    <h3>Create Transaction Log</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>
