@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views.generic import CreateView, ListView
 
 from my_app import models as my_app_models
+from my_app.helpers import localized_datetime
 
 
 class TransactionLogListView(ListView):
@@ -21,8 +23,16 @@ class TransactionLogListView(ListView):
 
 class TransactionLogCreateView(CreateView):
     model = my_app_models.TransactionLog
-    fields = ['transaction_id', 'notes']
+    fields = ['transaction_id', 'transaction_date', 'notes']
     success_url = reverse_lazy('transaction-logs-list')
 
+    def get_context_data(self, *args, **kwargs):
+        context_data = super().get_context_data(*args, **kwargs)
+        context_data['time_zone'] = settings.DEFAULT_TIME_ZONE
+        return context_data
 
-# TODO add a view with a form to see if dst is respected
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['transaction_date'] = localized_datetime(
+            settings.DEFAULT_TIME_ZONE, timezone.now())
+        return initial

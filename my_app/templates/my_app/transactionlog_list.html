@@ -12,10 +12,10 @@
     <table>
         <tr>
             <th>
-                UTC Date
+                Date Created
             </th>
             <th>
-                Date
+                Transaction Date
             </th>
             <th>
                 Transaction ID
@@ -28,10 +28,10 @@
         {% for obj in object_list %}
             <tr>
                 <td>
-                    {{ obj.created_at }}
+                    {{ obj.localized_created_at }}
                 </td>
                 <td>
-                    {{ obj.localized_created_at }}
+                    {{ obj.localized_transaction_date }}
                 </td>
                 <td>
                     {{ obj.transaction_id }}

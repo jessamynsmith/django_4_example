@@ -1,13 +1,16 @@
 {% extends 'my_app/base.html' %}
+{% load tz %}
 
 {% block title %}Create Transaction Log{% endblock %}
 
 {% block body %}
     <h3>Create Transaction Log</h3>
 
+    {% timezone time_zone %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save">
     </form>
+    {% endtimezone %}
 {% endblock %}
