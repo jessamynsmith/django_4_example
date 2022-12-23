@@ -1,19 +1,8 @@
-<html lang="en">
-<head>
-    <title>Transaction Logs</title>
-    
-    <style>
-        table {
-            border-collapse: collapse;
-        }
-        table th, table td {
-            border: 1px black solid;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
+{% extends 'my_app/base.html' %}
 
+{% block title %}Transaction Logs{% endblock %}
+
+{% block body %}
     <h3>Transaction Logs</h3>
 
     <a href="{% url 'transaction-logs-create' %}">New</a>
@@ -57,5 +46,4 @@
             </tr>
         {% endfor %}
     </table>
-</body>
-</html>
+{% endblock %}
