@@ -1,4 +1,5 @@
 {% extends 'my_app/base.html' %}
+{% load tz %}
 
 {% block title %}Transaction Logs{% endblock %}
 
@@ -7,6 +8,7 @@
 
     <a href="{% url 'transaction-logs-create' %}">New</a>
     
+    {% timezone time_zone %}
     <table>
         <tr>
             <th>
@@ -46,4 +48,5 @@
             </tr>
         {% endfor %}
     </table>
+    {% endtimezone %}
 {% endblock %}

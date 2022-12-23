@@ -13,8 +13,5 @@ class TransactionLog(models.Model):
         return f'{self.transaction_id}: {self.notes} ({self.created_at})'
 
     def localized_created_at(self):
-        # TODO figure out if dst is being respected
-        print(self.created_at)
         as_default = self.created_at.astimezone(settings.DEFAULT_TIME_ZONE)
-        print(as_default)
         return as_default
