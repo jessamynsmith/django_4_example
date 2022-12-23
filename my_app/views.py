@@ -23,3 +23,6 @@ class TransactionLogCreateView(CreateView):
     model = my_app_models.TransactionLog
     fields = ['transaction_id', 'notes']
     success_url = reverse_lazy('transaction-logs-list')
+
+
+# TODO add a view with a form to see if dst is respected
