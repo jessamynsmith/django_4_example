@@ -26,6 +26,11 @@ class TransactionLogCreateView(CreateView):
     fields = ['transaction_id', 'transaction_date', 'notes']
     success_url = reverse_lazy('transaction-logs-list')
 
+    def dispatch(self, request, *args, **kwargs):
+        # In a fully implemented application, this would be the user's selected timezone.
+        timezone.activate(settings.DEFAULT_TIME_ZONE)
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(*args, **kwargs)
         context_data['time_zone'] = settings.DEFAULT_TIME_ZONE
